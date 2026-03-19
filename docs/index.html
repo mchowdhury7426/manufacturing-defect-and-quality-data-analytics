@@ -67,11 +67,12 @@
       padding:10px;
       border-radius:10px;
       overflow:auto;
+      margin-top:10px;
     }
 
-    /* Data model image */
-    .model-figure{margin:12px 0 4px;}
-    .model-img{
+    /* Figures (screenshots) */
+    figure.case-figure{margin:12px 0 4px;}
+    img.case-img{
       width:100%;
       height:auto;
       border-radius:12px;
@@ -80,7 +81,7 @@
       background:#fff;
       display:block;
     }
-    .model-cap{
+    figcaption.case-cap{
       margin-top:8px;
       color:var(--muted);
       font-size:13px;
@@ -129,6 +130,14 @@
         <li><strong>Upstream integration</strong> (cutting, recutting, fabric) using reference tables to connect otherwise disconnected data.</li>
         <li><strong>VoG integration</strong> to translate customer feedback into defect language and connect it to factory actions.</li>
       </ul>
+
+      <figure class="case-figure">
+        <img class="case-img" src="unit-wise-analysis.png" alt="Unit-wise analysis screenshot" />
+        <figcaption class="case-cap">
+          Example of multi-level operational slicing (unit/line/floor/style/buyer/time). This is the practical layer where teams identify “where to act”
+          instead of only seeing overall defect rate.
+        </figcaption>
+      </figure>
     </div>
 
     <div class="card">
@@ -138,12 +147,12 @@
       </p>
 
       <h3>Challenge 1 — Data sourcing and cleaning</h3>
-      <p><strong>Reality:</strong> The factory had data, but it wasn’t “analysis-ready.” Inputs were partly manual and partly automatic, creating typos,
+      <p><strong>Reality:</strong> The factory had data, but it wasn’t analysis-ready. Inputs were partly manual and partly automatic, creating typos,
         mixed date formats, mismatched buyer names, and inconsistent IDs across large volumes of files.</p>
       <p><strong>What I did:</strong> I standardized dates, corrected repeated ID/style errors systematically, and validated fields against official lists.
         I cleaned the data while protecting daily operations—meaning I avoided changing the data-entry structure that operators depended on.</p>
-      <p><strong>Why it mattered:</strong> In quality analytics, bad inputs create wrong conclusions. This step wasn’t just “cleaning,” it was building
-        trust so that defect ranking wouldn’t mislead teams or trigger the wrong corrective actions.</p>
+      <p><strong>Why it mattered:</strong> In quality analytics, bad inputs create wrong conclusions. This step wasn’t just cleaning—it was building trust
+        so defect ranking wouldn’t mislead teams or trigger wrong corrective actions.</p>
 
       <div class="mono">
 Example correction logic I used in Excel (pattern-based correction + lookup):
@@ -161,69 +170,98 @@ Example correction logic I used in Excel (pattern-based correction + lookup):
       <h3>Challenge 3 — Putting inspection stages together (Inline + Endline + Prefinal)</h3>
       <p><strong>Reality:</strong> Inline, endline, and prefinal data existed in different structures. But factory decisions need comparisons across stages
         to understand where defects are generated and how they evolve.</p>
-      <p><strong>What I did:</strong> I aligned the datasets by adding an “inspection stage” identifier and standardizing the structure. Then I appended them into
+      <p><strong>What I did:</strong> I aligned datasets by adding an inspection-stage identifier and standardizing the structure. Then I appended them into
         a single central database table. I also created a central unpivoted table and built relationships that allow stage-wise and defect-wise analysis.</p>
-      <p><strong>Why it mattered:</strong> This turned a single report into a system: now defects can be tracked across stages, enabling correlation and faster RCA
+      <p><strong>Why it mattered:</strong> This turned a single report into a system: defects can be tracked across stages, enabling correlation and faster RCA
         rather than treating each inspection gate as a separate silo.</p>
 
       <h3>Challenge 4 — Scaling the database (Excel limitations)</h3>
-      <p><strong>Reality:</strong> Excel can’t hold “everything forever” in one file. Data volume grows fast, and forcing complicated tools on entry operators
-        breaks the process.</p>
+      <p><strong>Reality:</strong> Excel can’t hold everything forever in one file. Data volume grows fast, and forcing complicated tools on entry operators breaks the process.</p>
       <p><strong>What I did:</strong> I designed a folder-based database approach: distribute data into smaller standardized Excel files, store them in folders,
         and connect the folder to Power BI so new files can be dropped in and automatically included. I also improved entry templates with lookups and error checks
         so mistakes are caught at input time.</p>
-      <p><strong>Why it mattered:</strong> This is the practical bridge between factory reality and analytics. It keeps the workflow simple for operators while
-        giving Power BI a scalable ingestion method—like a lightweight database built on files.</p>
+      <p><strong>Why it mattered:</strong> This is the bridge between factory reality and analytics. Operators keep a usable workflow, while Power BI gains scalable ingestion.</p>
 
-      <h3>Challenge 5 — Integrating buyer final inspection data</h3>
-      <p><strong>Reality:</strong> Internal final inspection data existed but lacked reliability. Buyer final reports were more trustworthy, but they came with
-        different defect names, formats, and combined categories (measurement, workmanship, packaging).</p>
-      <p><strong>What I did:</strong> I used Power Query to transform buyer reports into a consistent structure, built calculations in DAX, designed a model for final data,
-        and then integrated it with factory inspection stages. I also handled combined-category reporting using additional filtering logic so final insights stayed meaningful.</p>
-      <p><strong>Why it mattered:</strong> This step aligned factory analytics to buyer reality. It enabled investigations to start from buyer findings and trace backwards
-        to inline, operation, and time-based sources, supporting structured improvement methods like 5-Why and PDCA.</p>
+      <h3>Challenge 5 — Integrating buyer final inspection data (Final + RCA)</h3>
+      <p><strong>Reality:</strong> Internal final inspection data existed but lacked reliability. Buyer final reports were more trustworthy, but they came with different
+        defect naming and combined categories (measurement, workmanship, packaging).</p>
+      <p><strong>What I did:</strong> I transformed buyer reports using Power Query, built calculations with DAX, designed a final-data model, and integrated it with factory
+        inspection stages. I also handled combined-category reporting using filtering logic so final insights stayed meaningful.</p>
+      <p><strong>Why it mattered:</strong> This aligned factory analytics to buyer reality. Investigations can start from buyer findings and trace backwards to inline,
+        operation and time-based sources, supporting structured improvement methods like 5-Why and PDCA.</p>
+
+      <figure class="case-figure">
+        <img class="case-img" src="final-defect.png" alt="Final defect screenshot" />
+        <figcaption class="case-cap">
+          Buyer final inspection view: final defect signals are standardized into the model so they can be compared with factory inspection stages.
+        </figcaption>
+      </figure>
+
+      <figure class="case-figure">
+        <img class="case-img" src="rca-operation.png" alt="RCA operation screenshot" />
+        <figcaption class="case-cap">
+          RCA trace layer: the model supports drilling down from defect outcome to operational origin so corrective actions can target the correct process/operation.
+        </figcaption>
+      </figure>
 
       <h3>Challenge 6 — Integrating cutting, recutting, and fabric</h3>
       <p><strong>Reality:</strong> Cutting and recutting integration needed consistent keys (style, PID, item type). Fabric was contract-based and did not map directly to style.</p>
-      <p><strong>What I did:</strong> I created dedicated reference tables: one for style–PID–item type, and another for fabric using contract numbers. Then I connected those
-        into the model so data becomes traceable across stages.</p>
-      <p><strong>Why it mattered:</strong> This created end-to-end visibility. Quality problems can be analyzed across upstream and downstream steps, instead of limiting
-        investigations to only one inspection gate.</p>
+      <p><strong>What I did:</strong> I created dedicated reference tables: one for style–PID–item type, and another for fabric using contract numbers.
+        Then I connected those into the model so data becomes traceable across stages.</p>
+      <p><strong>Why it mattered:</strong> This created end-to-end visibility. Quality problems can be analyzed across upstream and downstream steps, not limited to one inspection gate.</p>
 
       <h3>Challenge 7 — Product image and similar-style logic</h3>
-      <p><strong>Reality:</strong> The team wanted predictive context using images and historical similarity. But pulling images directly into Power BI created performance issues,
+      <p><strong>Reality:</strong> The team wanted predictive context using images and historical similarity. Pulling images directly into Power BI created performance issues,
         and internal access to image references was not always reliable.</p>
-      <p><strong>What I did:</strong> I built an image library with links stored in the Excel database and adjusted the reference format so users could access images reliably.
-        I also created an “upcoming style vs similar style” mapping so selecting an upcoming style automatically shows similar-style history and context.</p>
-      <p><strong>Why it mattered:</strong> This improved usability and decision speed. Stakeholders get product context instantly without slowing the report loading experience.</p>
+      <p><strong>What I did:</strong> I built an image library with references stored in the database and created an “upcoming style vs similar style” mapping so selecting an upcoming style
+        shows similar-style historical performance and context.</p>
+      <p><strong>Why it mattered:</strong> This improves readiness: teams can anticipate likely defect risks for new styles using proven historical signals.</p>
+
+      <figure class="case-figure">
+        <img class="case-img" src="similar-style.png" alt="Similar style screenshot" />
+        <figcaption class="case-cap">
+          Similar-style mapping: connects upcoming styles with historically similar products so teams can use past defect behavior to reduce risk before production ramps up.
+        </figcaption>
+      </figure>
 
       <h3>Challenge 8 — Integrating Voice of Guest (VoG) into defect language</h3>
       <p><strong>Reality:</strong> Stakeholders wanted to translate customer reviews into defects. Manual interpretation is not scalable.</p>
-      <p><strong>What I did:</strong> I implemented an AI-assisted interpretation workflow to convert comments into defect type, category, and name, and integrated those results into Power BI
-        alongside factory stages.</p>
-      <p><strong>How I kept it consistent:</strong> I designed strict classification logic so every VoG row receives a sentiment and each negative review gets one dominant issue.
-        Sentiment rules prioritize star rating and fit issues first; issue classification prioritizes price/value complaints first, then matches the main complaint to an approved defect list
-        whenever possible, and only creates a new issue name when no approved match exists.</p>
+      <p><strong>What I did:</strong> I implemented an AI-assisted interpretation workflow to convert comments into defect type/category/name and integrated those results into Power BI.</p>
+      <p><strong>How I kept it consistent:</strong> I designed strict classification rules so every row receives a sentiment and each negative review gets one dominant issue.
+        Sentiment rules prioritize star rating and fit issues first; issue classification prioritizes price/value complaints first, then matches the complaint to an approved defect list whenever possible,
+        and only creates a new issue when no approved match exists.</p>
       <p><strong>Why it mattered:</strong> This created a closed loop: customer complaints can be traced into factory stages (fabric → cutting → sewing → inspection → delivery),
-        allowing faster root-cause investigation and corrective action based on real customer signals.</p>
+        enabling faster root-cause investigation and corrective action based on real customer signals.</p>
+
+      <figure class="case-figure">
+        <img class="case-img" src="vog.png" alt="Voice of Guest screenshot" />
+        <figcaption class="case-cap">
+          VoG analytics view: customer feedback is translated into structured issues and connected to operational defect taxonomy for actionable factory-side investigation.
+        </figcaption>
+      </figure>
 
       <h3>Additional integration — Cross-check consistency (C&amp;C)</h3>
       <p>
-        I also integrated C&amp;C data to correlate inspection outcomes across different roles and external sources, so we can confirm we are following consistent procedures
-        and achieving consistent results.
+        I integrated C&amp;C data to correlate inspection outcomes across different roles and external sources, so we can confirm procedure consistency and comparable results.
+        This adds governance to the quality system, reducing disagreements caused by definition gaps or inconsistent inspection judgment.
       </p>
+
+      <figure class="case-figure">
+        <img class="case-img" src="defect-correlation.png" alt="Defect correlation screenshot" />
+        <figcaption class="case-cap">
+          Defect correlation / consistency layer: compares patterns across sources and roles to validate that inspection procedures and results are aligned.
+        </figcaption>
+      </figure>
     </div>
 
     <div class="card">
       <h2>Power BI Data Model — Architecture, Complexity, and Industrial Use</h2>
 
-      <!-- IMPORTANT: Put your data model screenshot here:
-           Save your screenshot as docs/model.png -->
-      <figure class="model-figure">
-        <img class="model-img" src="model.png.png" alt="Power BI data model diagram" />
-        <figcaption class="model-cap">
-          Power BI model diagram (high-level): relationship-based architecture connecting inspection stages, reference tables,
-          buyer final data, and customer feedback mapping for end-to-end quality analytics.
+      <figure class="case-figure">
+        <img class="case-img" src="model.png" alt="Power BI data model diagram" />
+        <figcaption class="case-cap">
+          Power BI data model diagram: relationship-based architecture connecting inspection stages, reference tables, buyer final integration,
+          and customer feedback mapping for end-to-end quality analytics.
         </figcaption>
       </figure>
 
@@ -237,71 +275,38 @@ Example correction logic I used in Excel (pattern-based correction + lookup):
 
       <h3>1) Core architecture (how the model is built)</h3>
       <p>
-        At the center of the model is a <strong>central inspection database</strong> that holds the common inspection context
-        (for example: style/PID, buyer, date, line/floor, MO and other identifiers). This “central table” is what everything
-        else connects to, so filters behave consistently across the entire report.
+        At the center of the model is a <strong>central inspection database</strong> that holds common inspection context (style/PID, buyer, date, line/floor, MO and other identifiers).
+        This “central table” is what everything else connects to, so filters behave consistently across the entire report.
       </p>
 
       <p>
-        On top of that central table, defect analysis is enabled through a <strong>separate defect fact structure</strong>.
-        This is achieved by duplicating the inspection table and <strong>unpivoting defect columns into rows</strong>,
-        creating a clean “Defect Name” + “Qty” structure. This table is connected back to the central inspection table
-        using a <strong>unique record ID</strong> with a one-to-many relationship, so one inspection record can produce
-        many defect rows.
+        Defect analysis is enabled through a <strong>separate defect fact structure</strong>. This is created by duplicating the inspection table and
+        <strong>unpivoting defect columns into rows</strong>, producing a clean “Defect Name + Qty” table. That table links to the central inspection table
+        using a <strong>unique record ID</strong> in a one-to-many relationship, so one inspection record can produce many defect rows.
       </p>
 
       <p class="muted">
-        Interpretation: This design is the difference between “pretty visuals” and “correct analytics.”
-        Without the unique-ID + unpivot defect-fact pattern, defect ranking becomes unreliable when slicing by buyer, line,
-        date, or product.
+        Interpretation: This is the difference between “pretty visuals” and correct analytics. Without the unique-ID + unpivot defect-fact pattern,
+        defect ranking becomes unreliable when slicing by buyer, line, date, or product.
       </p>
 
       <div class="hr"></div>
 
-      <h3>2) Why the model looks complex (and why that complexity is necessary)</h3>
+      <h3>2) Why the model looks complex (and why the complexity is necessary)</h3>
       <p>
-        The model becomes complex because it is not solving one report—it is solving a factory system problem.
-        It integrates multiple data realities:
+        The model is complex because it mirrors factory reality. It is not solving one report—it is solving a system problem:
+        multiple stages, multiple sources, multiple keys, and multiple decision levels need to work together without breaking.
       </p>
+
+      <h3>3) Industrial use (what it enables)</h3>
       <ul>
-        <li><strong>Multiple inspection stages</strong> unified into one comparable structure, so trends can be traced across stages.</li>
-        <li><strong>Scalable ingestion</strong> through folder-based Excel database design, so growth doesn’t break the system.</li>
-        <li><strong>Buyer Final reports</strong> transformed and integrated despite different naming and category structures.</li>
-        <li><strong>Upstream integration</strong> (cutting/recutting/fabric) using reference tables for stable keys.</li>
-        <li><strong>Product image + similar style logic</strong> so upcoming styles can inherit risk signals from historical patterns.</li>
-        <li><strong>VoG integration</strong> so customer voice becomes measurable, classifiable, and traceable into production.</li>
-        <li><strong>C&amp;C consistency correlation</strong> to align results across roles and external sources.</li>
+        <li><strong>Correct defect ranking</strong> at any level with stable slicing (line/floor/buyer/style/date).</li>
+        <li><strong>Cross-stage traceability</strong> to see where defects originate and where they are caught.</li>
+        <li><strong>Faster RCA</strong> by drilling from outcomes to operational origin and time context.</li>
+        <li><strong>Standardized decision language</strong> by translating VoG into consistent defect categories/issues.</li>
+        <li><strong>Predictive readiness</strong> via similar-style mapping and historical performance context.</li>
+        <li><strong>Governance & consistency</strong> via cross-role/source correlation checks.</li>
       </ul>
-
-      <p class="muted">
-        Interpretation: The “complexity” is not decoration—it is governance. Each additional table exists because one more real-world
-        business question needs a reliable key, a reliable relationship, or a reliable definition.
-      </p>
-
-      <div class="hr"></div>
-
-      <h3>3) Industrial use — what the model enables in a factory</h3>
-      <p>
-        This model is built for operational decision-making, not just reporting. In industrial terms, it enables:
-      </p>
-      <ul>
-        <li><strong>True defect ranking at any level</strong> — top defects by line, floor, buyer, product, and date using stable slicing.</li>
-        <li><strong>Cross-stage traceability</strong> — identifying where defects are born, amplified, or caught late.</li>
-        <li><strong>Faster RCA and structured improvement</strong> — tracing backward from buyer findings and driving 5-Why / PDCA actions.</li>
-        <li><strong>Standardized decision language</strong> — customer feedback becomes consistent issues, not subjective interpretation.</li>
-        <li><strong>Predictive risk context</strong> — similar-style mapping supports better readiness and prevention.</li>
-        <li><strong>Quality consistency checks</strong> — confirming procedure alignment across inspectors and sources.</li>
-      </ul>
-
-      <div class="hr"></div>
-
-      <h3>4) What this model proves (complexity interpreted)</h3>
-      <p>
-        A factory-grade model is not “one dataset.” It is a controlled ecosystem:
-        <strong>conformed keys</strong>, <strong>controlled relationships</strong>, and <strong>standardized definitions</strong>.
-        This model shows maturity because it connects upstream-to-downstream (fabric → cutting → sewing → inspection → buyer final → customer voice),
-        enabling faster decision-making and stronger quality governance across the production chain.
-      </p>
 
       <p class="muted">
         In short: the model is complex because the factory is complex—and the analytics is designed to match reality without breaking operations.
