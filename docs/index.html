@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Quality Data Analytics — Case Study</title>
+
+  <style>
+    :root{
+      --bg:#f6f7fb;
+      --text:#111827;
+      --muted:#4b5563;
+      --card:#ffffff;
+      --border:rgba(0,0,0,.08);
+      --hero1:#0b1020;
+      --hero2:#0f3d3e;
+      --hero3:#1f6f8b;
+    }
+    *{box-sizing:border-box;}
+    body{
+      margin:0;
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.7;
+    }
+    .wrap{max-width:1000px;margin:0 auto;padding:20px 16px 50px;}
+    .hero{
+      background:linear-gradient(135deg,var(--hero1),var(--hero2),var(--hero3));
+      color:#fff;
+      padding:22px 20px;
+      border-radius:14px;
+      box-shadow:0 16px 35px rgba(0,0,0,.16);
+      border:1px solid rgba(255,255,255,.10);
+    }
+    h1{margin:0;font-size:28px;line-height:1.15;}
+    .name{margin-top:8px;opacity:.92;font-size:16px;}
+    .card{
+      background:var(--card);
+      margin-top:16px;
+      padding:18px 18px;
+      border-radius:14px;
+      border:1px solid var(--border);
+    }
+    h2{margin:0 0 10px;font-size:18px;}
+    h3{margin:16px 0 8px;font-size:16px;}
+    p{margin:10px 0;}
+    ul{margin:8px 0 0 18px;padding:0;}
+    li{margin:6px 0;}
+    .muted{color:var(--muted);}
+    .hr{height:1px;background:rgba(0,0,0,.08);margin:14px 0;}
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+
+    <div class="hero">
+      <h1>Quality Data Analytics — Closed‑Loop Quality Intelligence (RMG)</h1>
+      <div class="name">Mohaimin Chowdhury</div>
+    </div>
+
+    <div class="card">
+      <h2>Overview</h2>
+      <p>
+        This case study explains how I transformed inconsistent factory quality data into a scalable analytics system.
+        It started as a simple requirement: identify top defects in factory endline. The real challenge was that
+        real-world manufacturing data was not structured, not consistent, and not analysis-ready. [1](https://hoplun-my.sharepoint.com/personal/mohaimin_chowdhury_hoplun_com/_layouts/15/Doc.aspx?sourcedoc=%7B465F1D04-D319-4988-9BEE-495B8A0BB1FE%7D&file=Quality%20Data.docx&action=default&mobileredirect=true&DefaultItemOpen=1)
+      </p>
+      <p>
+        The solution evolved into a complete quality intelligence build: cleaning and standardizing raw data, reshaping it
+        into an analytics-friendly model, unifying multiple inspection stages, scaling the database ingestion approach,
+        integrating buyer final inspection data, extending the model upstream to cutting/recutting/fabric, and finally
+        closing the loop by mapping Voice of Guest (VoG) feedback into defect taxonomy and factory actions. [1](https://hoplun-my.sharepoint.com/personal/mohaimin_chowdhury_hoplun_com/_layouts/15/Doc.aspx?sourcedoc=%7B465F1D04-D319-4988-9BEE-495B8A0BB1FE%7D&file=Quality%20Data.docx&action=default&mobileredirect=true&DefaultItemOpen=1)[2](https://hoplun-my.sharepoint.com/personal/raju_ahmed_hoplun_com/_layouts/15/Doc.aspx?sourcedoc=%7BD674EC8D-64BF-4200-8FAE-4A3C601C31B8%7D&file=VoG%20-%20Cloude%20Propmt.docx&action=default&mobileredirect=true&DefaultItemOpen=1)
+      </p>
+
+      <div class="hr"></div>
+
+      <h2>What I built (in simple terms)</h2>
+      <ul>
+        <li>A structured data foundation from messy Excel/database inputs. [1](https://hoplun-my.sharepoint.com/personal/mohaimin_chowdhury_hoplun_com/_layouts/15/Doc.aspx?sourcedoc=%7B465F1D04-D319-4988-9BEE-495B8A0BB1FE%7D&file=Quality%20Data.docx&action=default&mobileredirect=true&DefaultItemOpen=1)</li>
+        <li>A Power BI model where defects can be ranked correctly by line, floor, buyer, product, and date. [1](https://hoplun-my.sharepoint.com/personal/mohaimin_chowdhury_hoplun_com/_layouts/15/Doc.aspx?sourcedoc=%7B465F1D04-D319-4988-9BEE-495B8A0BB1FE%7D&file=Quality%20Data.docx&action=default&mobileredirect=true&DefaultItemOpen=1)</li>
+        <li>A centralized “three-stage” inspection database (Inline + Endline + Prefinal). [1](https://hoplun-my.sharepoint.com/personal/mohaimin_chowdhury_hoplun_com/_layouts/15/Doc.aspx?sourcedoc=%7B465F1D04-D319-4988-9BEE-495B8A0BB1FE%7D&file=Quality%20Data.docx&action=default&mobileredirect=true&DefaultItemOpen=1)</li>
+        <li>A scalable folder-based ingestion approach so the database can grow without breaking Excel limits. [1](https://hoplun-my.sharepoint.com/personal/mohaimin_chowdhury_hoplun_com/_layouts/15/Doc.aspx?sourcedoc=%7B465F1D04-D319-4988-9BEE-495B8A0BB1FE%7D&file=Quality%20Data.docx&action=default&mobileredirect=true&DefaultItemOpen=1)</li>
+        <li>Integration of buyer final inspection reports through transformation and modeling. [1](https://hoplun-my.sharepoint.com/personal/mohaimin_chowdhury_hoplun_com/_layouts/15/Doc.aspx?sourcedoc=%7B465F1D04-D319-4988-9BEE-495B8A0BB1FE%7D&file=Quality%20Data.docx&action=default&mobileredirect=true&DefaultItemOpen=1)</li>
+        <li>Upstream integration (cutting, recutting, fabric) using reference tables. [1](https://hoplun-my.sharepoint.com/personal/mohaimin_chowdhury_hoplun_com/_layouts/15/Doc.aspx?sourcedoc=%7B465F1D04-D319-4988-9BEE-495B8A0BB1FE%7D&file=Quality%20Data.docx&action=default&mobileredirect=true&DefaultItemOpen=1)</li>
+        <li>VoG integration: customer reviews → structured issues → mapped defects → linked to factory investigation. [1](https://hoplun-my.sharepoint.com/personal/mohaimin_chowdhury_hoplun_com/_layouts/15/Doc.aspx?sourcedoc=%7B465F1D04-D319-4988-9BEE-495B8A0BB1FE%7D&file=Quality%20Data.docx&action=default&mobileredirect=true&DefaultItemOpen=1)[2](https://hoplun-my.sharepoint.com/personal/raju_ahmed_hoplun_com/_layouts/15/Doc.aspx?sourcedoc=%7BD674EC8D-64BF-4200-8FAE-4A3C601C31B8%7D&file=VoG%20-%20Cloude%20Propmt.docx&action=default&mobileredirect=true&DefaultItemOpen=1)</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>Case Study — Detailed Actions (Interpreted)</h2>
+      <p class="muted">
+        This section explains what I did, why I did it, and what each decision enabled.
+        It is written from my original work notes in <strong>Quality Data</strong>. [1](https://hoplun-my.sharepoint.com/personal/mohaimin_chowdhury_hoplun_com/_layouts/15/Doc.aspx?sourcedoc=%7B465F1D04-D319-4988-9BEE-495B8A0BB1FE%7D&file=Quality%20Data.docx&action=default&mobileredirect=true&DefaultItemOpen=1)
+      </p>
+
+      <h3>Challenge 1 — Data sourcing and cleaning</h3>
+      <p><strong>Context:</strong> The factory had a database, which is modern compared to many factories, but the data was stored without a practical analytics purpose. Input was partially manual and partially automatic, causing high error risk and inconsistency (typos, multiple date formats, buyer name mismatch, and mismatch in date and quantity). The dataset volume was large, with many historical Excel files. [1](https://hoplun-my.sharepoint.com/personal/mohaimin_chowdhury_hoplun_com/_layouts/15/Doc.aspx?sourcedoc=%7B465F1D04-D319-4988-9BEE-495B8A0BB1FE%7D&file=Quality%20Data.docx&action=default&mobileredirect=true&DefaultItemOpen=1)</p>
+
+      <p><strong>Actions:</strong></p>
+      <ul>
+        <li><strong>Standardized dates:</strong> I converted multiple date formats into a single format to make time-based analysis reliable. [1](https://hoplun-my.sharepoint.com/personal/mohaimin_chowdhury_hoplun_com/_layouts/15/Doc.aspx?sourcedoc=%7B465F1D04-D319-4988-9BEE-495B8A0BB1FE%7D&file=Quality%20Data.docx&action=default&mobileredirect=true&DefaultItemOpen=1)</li>
+        <li><strong>Corrected repeated errors systematically:</strong> I focused on repeated mistake patterns in style and product IDs and corrected them consistently across files. [1](https://hoplun-my.sharepoint.com/personal/mohaimin_chowdhury_hoplun_com/_layouts/15/Doc.aspx?sourcedoc=%7B465F1D04-D319-4988-9BEE-495B8A0BB1FE%7D&file=Quality%20Data.docx&action=default&mobileredirect=true&DefaultItemOpen=1)</li>
+        <li><strong>Validated against official references:</strong> I checked IDs and naming against official lists to identify and correct mismatches. [1](https://hoplun-my.sharepoint.com/personal/mohaimin_chowdhury_hoplun_com/_layouts/15/Doc.aspx?sourcedoc=%7B465F1D04-D319-4988-9BEE-495B8A0BB1FE%7D&file=Quality%20Data.docx&action=default&mobileredirect=true&DefaultItemOpen=1)</li>
+        <li><strong>Protected the operator workflow:</strong> I avoided changing the original entry structure because it would disrupt the data-entry operators and the ongoing database process. Instead, I planned to keep source structure and do the transformation inside Power BI. [1](https://hoplun-my.sharepoint.com/personal/mohaimin_chowdhury_hoplun_com/_layouts/15/Doc.aspx?sourcedoc=%7B465F1D04-D319-4988-9BEE-495B8A0BB1FE%7D&file=Quality%20Data.docx&action=default&mobileredirect=true&DefaultItemOpen=1)</li>
+      </ul>
+
+      <p><strong>Interpretation:</strong> This stage was not “just cleaning.” It established trust in the data so that defect ranking would not mislead teams. It also ensured the solution could survive daily operations without forcing operators into a new process. [1](https://hoplun-my.sharepoint.com/personal/mohaimin_chowdhury_hoplun_com/_layouts/15/Doc.aspx?sourcedoc=%7B465F1D04-D319-4988-9BEE-495B8A0BB1FE%7D&file=Quality%20Data.docx&action=default&mobileredirect=true&DefaultItemOpen=1)</p>
+
+      <h3>Challenge 2 — Data structure in Power BI</h3>
+      <p><strong>Problem:</strong> Defect names existed as columns and defect counts were input in rows. There was no unique identifier for each record. In that structure, reliable “top defects” analysis is not possible. [1](https://hoplun-my.sharepoint.com/personal/mohaimin_chowdhury_hoplun_com/_layouts/15/Doc.aspx?sourcedoc=%7B465F1D04-D319-4988-9BEE-495B8A0BB1FE%7D&file=Quality%20Data.docx&action=default&mobileredirect=true&DefaultItemOpen=1)</p>
+
+      <p><strong>Actions:</strong></p>
+      <ul>
+        <li><strong>Structured the dataset on load:</strong> I formatted each column and removed unnecessary columns to stabilize the model. [1](https://hoplun-my.sharepoint.com/personal/mohaimin_chowdhury_hoplun_com/_layouts/15/Doc.aspx?sourcedoc=%7B465F1D04-D319-4988-9BEE-495B8A0BB1FE%7D&file=Quality%20Data.docx&action=default&mobileredirect=true&DefaultItemOpen=1)</li>
+        <li><strong>Created a unique record key:</strong> I added an index and built a unique ID by concatenating style, product ID, date, and index to uniquely identify each row. [1](https://hoplun-my.sharepoint.com/personal/mohaimin_chowdhury_hoplun_com/_layouts/15/Doc.aspx?sourcedoc=%7B465F1D04-D319-4988-9BEE-495B8A0BB1FE%7D&file=Quality%20Data.docx&action=default&mobileredirect=true&DefaultItemOpen=1)</li>
+        <li><strong>Unpivoted defects for analytics:</strong> I duplicated the table and unpivoted defect columns so defects became rows with “Defect Name” and “Qty.” [1](https://hoplun-my.sharepoint.com/personal/mohaimin_chowdhury_hoplun_com/_layouts/15/Doc.aspx?sourcedoc=%7B465F1D04-D319-4988-9BEE-495B8A0BB1FE%7D&file=Quality%20Data.docx&action=default&mobileredirect=true&DefaultItemOpen=1)</li>
+        <li><strong>Built correct relationships:</strong> I linked the original and unpivoted tables using the unique ID (one-to-many), enabling correct slicing and ranking by line, floor, buyer, product, and date. [1](https://hoplun-my.sharepoint.com/personal/mohaimin_chowdhury_hoplun_com/_layouts/15/Doc.aspx?sourcedoc=%7B465F1D04-D319-4988-9BEE-495B8A0BB1FE%7D&file=Quality%20Data.docx&action=default&mobileredirect=true&DefaultItemOpen=1)</li>
+      </ul>
+
+      <p><strong>Interpretation:</strong> The key insight here was: keep the source “operator-friendly,” but create an “analytics-friendly” structure in Power BI. That is what made accurate defect ranking possible without changing the factory’s input behavior. [1](https://hoplun-my.sharepoint.com/personal/mohaimin_chowdhury_hoplun_com/_layouts/15/Doc.aspx?sourcedoc=%7B465F1D04-D319-4988-9BEE-495B8A0BB1FE%7D&file=Quality%20Data.docx&action=default&mobileredirect=true&DefaultItemOpen=1)</p>
+
+      <h3>Challenge 3 — Putting it all together (Inline + Endline + Prefinal)</h3>
+      <p><strong>Problem:</strong> Inline and prefinal had different structures. For meaningful comparison and correlation across inspection phases, all stages needed to align with a common structure. [1](https://hoplun-my.sharepoint.com/personal/mohaimin_chowdhury_hoplun_com/_layouts/15/Doc.aspx?sourcedoc=%7B465F1D04-D319-4988-9BEE-495B8A0BB1FE%7D&file=Quality%20Data.docx&action=default&mobileredirect=true&DefaultItemOpen=1)</p>
+
+      <p><strong>Actions:</strong></p>
+      <ul>
+        <li><strong>Added an “inspection stage” identifier</strong> to each dataset to clearly separate Inline, Endline, and Prefinal. [1](https://hoplun-my.sharepoint.com/personal/mohaimin_chowdhury_hoplun_com/_layouts/15/Doc.aspx?sourcedoc=%7B465F1D04-D319-4988-9BEE-495B8A0BB1FE%7D&file=Quality%20Data.docx&action=default&mobileredirect=true&DefaultItemOpen=1)</li>
+        <li><strong>Aligned structures and appended</strong> them into a single “central database” table. [1](https://hoplun-my.sharepoint.com/personal/mohaimin_chowdhury_hoplun_com/_layouts/15/Doc.aspx?sourcedoc=%7B465F1D04-D319-4988-9BEE-495B8A0BB1FE%7D&file=Quality%20Data.docx&action=default&mobileredirect=true&DefaultItemOpen=1)</li>
+        <li><strong>Created a central unpivoted defect table</strong> from the central database for defect ranking across all stages. [1](https://hoplun-my.sharepoint.com/personal/mohaimin_chowdhury_hoplun_com/_layouts/15/Doc.aspx?sourcedoc=%7B465F1D04-D319-4988-9BEE-495B8A0BB1FE%7D&file=Quality%20Data.docx&action=default&mobileredirect=true&DefaultItemOpen=1)</li>
+        <li><strong>Connected tables deliberately</strong> so filtering works stage-wise and defect-wise (central as the base, unpivot as the defect fact). [1](https://hoplun-my.sharepoint.com/personal/mohaimin_chowdhury_hoplun_com/_layouts/15/Doc.aspx?sourcedoc=%7B465F1D04-D319-4988-9BEE-495B8A0BB1FE%7D&file=Quality%20Data.docx&action=default&mobileredirect=true&DefaultItemOpen=1)</li>
+      </ul>
+
+      <p><strong>Interpretation:</strong> This is where the solution moved from a single report to a system. It enabled stage comparison (Inline vs Endline vs Prefinal) and created a stable foundation for multi-stage RCA. [1](https://hoplun-my.sharepoint.com/personal/mohaimin_chowdhury_hoplun_com/_layouts/15/Doc.aspx?sourcedoc=%7B465F1D04-D319-4988-9BEE-495B8A0BB1FE%7D&file=Quality%20Data.docx&action=default&mobileredirect=true&DefaultItemOpen=1)</p>
+
+      <h3>Challenge 4 — Database scalability (Excel limitations)</h3>
+      <p><strong>Problem:</strong> Data was in Excel and the volume was too large. A single-file database would not scale, but moving to a complex system could overwhelm entry operators. [1](https://hoplun-my.sharepoint.com/personal/mohaimin_chowdhury_hoplun_com/_layouts/15/Doc.aspx?sourcedoc=%7B465F1D04-D319-4988-9BEE-495B8A0BB1FE%7D&file=Quality%20Data.docx&action=default&mobileredirect=true&DefaultItemOpen=1)</p>
+
+      <p><strong>Actions:</strong></p>
+      <ul>
+        <li><strong>Adopted folder-based storage:</strong> Instead of storing everything in one file, the database was split into smaller standardized Excel files. [1](https://hoplun-my.sharepoint.com/personal/mohaimin_chowdhury_hoplun_com/_layouts/15/Doc.aspx?sourcedoc=%7B465F1D04-D319-4988-9BEE-495B8A0BB1FE%7D&file=Quality%20Data.docx&action=default&mobileredirect=true&DefaultItemOpen=1)</li>
+        <li><strong>Connected Power BI to folders:</strong> Power BI reads the folder so dropping new files updates the dataset without manual rebuild. [1](https://hoplun-my.sharepoint.com/personal/mohaimin_chowdhury_hoplun_com/_layouts/15/Doc.aspx?sourcedoc=%7B465F1D04-D319-4988-9BEE-495B8A0BB1FE%7D&file=Quality%20Data.docx&action=default&mobileredirect=true&DefaultItemOpen=1)</li>
+        <li><strong>Improved entry templates:</strong> Files were formatted with lookups and error-return logic so mistakes are flagged early in the entry stage. [1](https://hoplun-my.sharepoint.com/personal/mohaimin_chowdhury_hoplun_com/_layouts/15/Doc.aspx?sourcedoc=%7B465F1D04-D319-4988-9BEE-495B8A0BB1FE%7D&file=Quality%20Data.docx&action=default&mobileredirect=true&DefaultItemOpen=1)</li>
+      </ul>
+
+      <p><strong>Interpretation:</strong> This was the “scale without stress” move—keeping Excel for human usability while making Power BI behave like a scalable database ingestion system. [1](https://hoplun-my.sharepoint.com/personal/mohaimin_chowdhury_hoplun_com/_layouts/15/Doc.aspx?sourcedoc=%7B465F1D04-D319-4988-9BEE-495B8A0BB1FE%7D&file=Quality%20Data.docx&action=default&mobileredirect=true&DefaultItemOpen=1)</p>
+
+      <h3>Challenge 5 — Integrating final data from buyer</h3>
+      <p><strong>Problem:</strong> Internal final data lacked reliability, so buyer final reports were preferred. But buyer reports had different defect naming and different report structures, including grouped categories (measurement, workmanship, packaging). [1](https://hoplun-my.sharepoint.com/personal/mohaimin_chowdhury_hoplun_com/_layouts/15/Doc.aspx?sourcedoc=%7B465F1D04-D319-4988-9BEE-495B8A0BB1FE%7D&file=Quality%20Data.docx&action=default&mobileredirect=true&DefaultItemOpen=1)</p>
+
+      <p><strong>Actions:</strong></p>
+      <ul>
+        <li><strong>Transformed buyer reports using Power Query</strong> to restructure them into a usable analytic format. [1](https://hoplun-my.sharepoint.com/personal/mohaimin_chowdhury_hoplun_com/_layouts/15/Doc.aspx?sourcedoc=%7B465F1D04-D319-4988-9BEE-495B8A0BB1FE%7D&file=Quality%20Data.docx&action=default&mobileredirect=true&DefaultItemOpen=1)</li>
+        <li><strong>Built DAX-based calculations</strong> and designed a model for buyer final data before integrating it with factory inspection stages. [1](https://hoplun-my.sharepoint.com/personal/mohaimin_chowdhury_hoplun_com/_layouts/15/Doc.aspx?sourcedoc=%7B465F1D04-D319-4988-9BEE-495B8A0BB1FE%7D&file=Quality%20Data.docx&action=default&mobileredirect=true&DefaultItemOpen=1)</li>
+        <li><strong>Handled grouped categories through filtering and logic</strong> so analysis remains meaningful and segmented. [1](https://hoplun-my.sharepoint.com/personal/mohaimin_chowdhury_hoplun_com/_layouts/15/Doc.aspx?sourcedoc=%7B465F1D04-D319-4988-9BEE-495B8A0BB1FE%7D&file=Quality%20Data.docx&action=default&mobileredirect=true&DefaultItemOpen=1)</li>
+        <li><strong>Enabled structured problem-solving</strong> (5-Why and PDCA) using buyer findings as triggers for factory-side investigation. [1](https://hoplun-my.sharepoint.com/personal/mohaimin_chowdhury_hoplun_com/_layouts/15/Doc.aspx?sourcedoc=%7B465F1D04-D319-4988-9BEE-495B8A0BB1FE%7D&file=Quality%20Data.docx&action=default&mobileredirect=true&DefaultItemOpen=1)</li>
+      </ul>
+
+      <p><strong>Interpretation:</strong> This step made the system buyer-aligned. Instead of only internal reporting, it supported investigations starting from buyer final results and tracing back into factory stages. [1](https://hoplun-my.sharepoint.com/personal/mohaimin_chowdhury_hoplun_com/_layouts/15/Doc.aspx?sourcedoc=%7B465F1D04-D319-4988-9BEE-495B8A0BB1FE%7D&file=Quality%20Data.docx&action=default&mobileredirect=true&DefaultItemOpen=1)</p>
+
+      <h3>Challenge 6 — Integration of cutting, recutting, and fabric data</h3>
+      <p><strong>Problem:</strong> Cutting/recutting integration required consistent references (style + PID + item type). Fabric data did not map directly to style because it was contract-based. [1](https://hoplun-my.sharepoint.com/personal/mohaimin_chowdhury_hoplun_com/_layouts/15/Doc.aspx?sourcedoc=%7B465F1D04-D319-4988-9BEE-495B8A0BB1FE%7D&file=Quality%20Data.docx&action=default&mobileredirect=true&DefaultItemOpen=1)</p>
+
+      <p><strong>Actions:</strong></p>
+      <ul>
+        <li><strong>Created a style reference table</strong> mapping style with PID and item type so the overall model can be based on style. [1](https://hoplun-my.sharepoint.com/personal/mohaimin_chowdhury_hoplun_com/_layouts/15/Doc.aspx?sourcedoc=%7B465F1D04-D319-4988-9BEE-495B8A0BB1FE%7D&file=Quality%20Data.docx&action=default&mobileredirect=true&DefaultItemOpen=1)</li>
+        <li><strong>Created a fabric reference table</strong> to connect fabric using contract numbers. [1](https://hoplun-my.sharepoint.com/personal/mohaimin_chowdhury_hoplun_com/_layouts/15/Doc.aspx?sourcedoc=%7B465F1D04-D319-4988-9BEE-495B8A0BB1FE%7D&file=Quality%20Data.docx&action=default&mobileredirect=true&DefaultItemOpen=1)</li>
+        <li><strong>Integrated stages into one system</strong> so issues can be investigated across upstream and downstream steps. [1](https://hoplun-my.sharepoint.com/personal/mohaimin_chowdhury_hoplun_com/_layouts/15/Doc.aspx?sourcedoc=%7B465F1D04-D319-4988-9BEE-495B8A0BB1FE%7D&file=Quality%20Data.docx&action=default&mobileredirect=true&DefaultItemOpen=1)</li>
+      </ul>
+
+      <h3>Challenge 7 — Inclusion of image and similar style</h3>
+      <p><strong>Problem:</strong> The team wanted predictive analysis using historical performance and product images. Pulling images directly into Power BI slowed loading. Also, internal link access was not reliable for all users. [1](https://hoplun-my.sharepoint.com/personal/mohaimin_chowdhury_hoplun_com/_layouts/15/Doc.aspx?sourcedoc=%7B465F1D04-D319-4988-9BEE-495B8A0BB1FE%7D&file=Quality%20Data.docx&action=default&mobileredirect=true&DefaultItemOpen=1)</p>
+
+      <p><strong>Actions:</strong></p>
+      <ul>
+        <li><strong>Built an image library</strong> and stored image references in the dataset. [1](https://hoplun-my.sharepoint.com/personal/mohaimin_chowdhury_hoplun_com/_layouts/15/Doc.aspx?sourcedoc=%7B465F1D04-D319-4988-9BEE-495B8A0BB1FE%7D&file=Quality%20Data.docx&action=default&mobileredirect=true&DefaultItemOpen=1)</li>
+        <li><strong>Shifted from “pulling images into Power BI” to “using accessible references”</strong> to reduce performance issues. [1](https://hoplun-my.sharepoint.com/personal/mohaimin_chowdhury_hoplun_com/_layouts/15/Doc.aspx?sourcedoc=%7B465F1D04-D319-4988-9BEE-495B8A0BB1FE%7D&file=Quality%20Data.docx&action=default&mobileredirect=true&DefaultItemOpen=1)</li>
+        <li><strong>Created “upcoming style vs similar style” mapping</strong> so selecting an upcoming style shows similar-style history and context. [1](https://hoplun-my.sharepoint.com/personal/mohaimin_chowdhury_hoplun_com/_layouts/15/Doc.aspx?sourcedoc=%7B465F1D04-D319-4988-9BEE-495B8A0BB1FE%7D&file=Quality%20Data.docx&action=default&mobileredirect=true&DefaultItemOpen=1)</li>
+      </ul>
+
+      <h3>Challenge 8 — Integration of Voice of Guest (VoG)</h3>
+      <p><strong>Problem:</strong> Stakeholders wanted customer review analysis to identify defects, but manual mapping was impossible at scale. [1](https://hoplun-my.sharepoint.com/personal/mohaimin_chowdhury_hoplun_com/_layouts/15/Doc.aspx?sourcedoc=%7B465F1D04-D319-4988-9BEE-495B8A0BB1FE%7D&file=Quality%20Data.docx&action=default&mobileredirect=true&DefaultItemOpen=1)</p>
+
+      <p><strong>Actions:</strong></p>
+      <ul>
+        <li><strong>Used an AI-assisted interpretation workflow</strong> (Copilot agent + Claude mentioned in your notes) to map comments into defect type, category, and name. [1](https://hoplun-my.sharepoint.com/personal/mohaimin_chowdhury_hoplun_com/_layouts/15/Doc.aspx?sourcedoc=%7B465F1D04-D319-4988-9BEE-495B8A0BB1FE%7D&file=Quality%20Data.docx&action=default&mobileredirect=true&DefaultItemOpen=1)</li>
+        <li><strong>Applied disciplined classification rules</strong> from your VoG prompt design:
+          sentiment filled for every row, and for negative rows one dominant issue is assigned using your defect list whenever possible. [2](https://hoplun-my.sharepoint.com/personal/raju_ahmed_hoplun_com/_layouts/15/Doc.aspx?sourcedoc=%7BD674EC8D-64BF-4200-8FAE-4A3C601C31B8%7D&file=VoG%20-%20Cloude%20Propmt.docx&action=default&mobileredirect=true&DefaultItemOpen=1)
+        </li>
+        <li><strong>Integrated VoG into the same Power BI ecosystem</strong> so a customer complaint can trigger factory-level investigation from fabric to cutting to sewing to delivery. [1](https://hoplun-my.sharepoint.com/personal/mohaimin_chowdhury_hoplun_com/_layouts/15/Doc.aspx?sourcedoc=%7B465F1D04-D319-4988-9BEE-495B8A0BB1FE%7D&file=Quality%20Data.docx&action=default&mobileredirect=true&DefaultItemOpen=1)[2](https://hoplun-my.sharepoint.com/personal/raju_ahmed_hoplun_com/_layouts/15/Doc.aspx?sourcedoc=%7BD674EC8D-64BF-4200-8FAE-4A3C601C31B8%7D&file=VoG%20-%20Cloude%20Propmt.docx&action=default&mobileredirect=true&DefaultItemOpen=1)</li>
+      </ul>
+
+      <h3>Additional integration — C&amp;C correlation</h3>
+      <p>
+        You also documented integrating C&amp;C data to correlate inspection results across managers, officers, inspectors, and buyer data to confirm procedure alignment and consistency. [1](https://hoplun-my.sharepoint.com/personal/mohaimin_chowdhury_hoplun_com/_layouts/15/Doc.aspx?sourcedoc=%7B465F1D04-D319-4988-9BEE-495B8A0BB1FE%7D&file=Quality%20Data.docx&action=default&mobileredirect=true&DefaultItemOpen=1)
+      </p>
+
+      <div class="hr"></div>
+
+      <h2>Closing Reflection</h2>
+      <p>
+        This started as “find the top defects,” but the core work was building a system: reliable inputs, analytics-ready structure,
+        stage integration, scalable ingestion, buyer-aligned final insights, upstream connection, and customer-feedback closure.
+        The outcome is a single analytics environment designed to support faster, clearer quality decision-making. [1](https://hoplun-my.sharepoint.com/personal/mohaimin_chowdhury_hoplun_com/_layouts/15/Doc.aspx?sourcedoc=%7B465F1D04-D319-4988-9BEE-495B8A0BB1FE%7D&file=Quality%20Data.docx&action=default&mobileredirect=true&DefaultItemOpen=1)[2](https://hoplun-my.sharepoint.com/personal/raju_ahmed_hoplun_com/_layouts/15/Doc.aspx?sourcedoc=%7BD674EC8D-64BF-4200-8FAE-4A3C601C31B8%7D&file=VoG%20-%20Cloude%20Propmt.docx&action=default&mobileredirect=true&DefaultItemOpen=1)
+      </p>
+
+    </div>
+
+  </div>
+</body>
+</html>
