@@ -7,77 +7,251 @@
 
   <style>
     :root{
-      --bg:#f6f7fb;
-      --text:#111827;
-      --muted:#4b5563;
-      --card:#ffffff;
-      --border:rgba(0,0,0,.08);
+      --bg:#f5f7fb;
+      --text:#0f172a;
+      --muted:#475569;
+      --card:rgba(255,255,255,.78);
+      --cardSolid:#ffffff;
+      --border:rgba(15,23,42,.10);
+      --shadow: 0 18px 45px rgba(2,6,23,.10);
+      --shadow2: 0 10px 22px rgba(2,6,23,.10);
+
       --hero1:#0b1020;
       --hero2:#0f3d3e;
       --hero3:#1f6f8b;
-      --chip:#eef2ff;
+
+      --accent:#7c3aed;
+      --accent2:#22c55e;
+      --accent3:#38bdf8;
+
+      --chipBg:rgba(255,255,255,.14);
+      --chipBorder:rgba(255,255,255,.16);
+
+      --radius:16px;
     }
+
     *{box-sizing:border-box;}
+    html{scroll-behavior:smooth;}
     body{
       margin:0;
       font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-      background:var(--bg);
-      color:var(--text);
-      line-height:1.7;
+      background: var(--bg);
+      color: var(--text);
+      line-height:1.75;
+      overflow-x:hidden;
     }
-    .wrap{max-width:1000px;margin:0 auto;padding:20px 16px 50px;}
+
+    /* ====== Soft artistic background (aurora) ====== */
+    .bgfx{
+      position:fixed; inset:0; z-index:-2;
+      background:
+        radial-gradient(900px 500px at 12% 12%, rgba(124,58,237,.18), transparent 60%),
+        radial-gradient(800px 520px at 88% 18%, rgba(56,189,248,.16), transparent 60%),
+        radial-gradient(950px 600px at 40% 92%, rgba(34,197,94,.12), transparent 62%),
+        linear-gradient(180deg, #f7f9ff 0%, #f5f7fb 60%, #f8fafc 100%);
+      filter:saturate(1.05);
+    }
+    .bgfx::after{
+      content:"";
+      position:absolute; inset:-60px;
+      background:
+        radial-gradient(700px 400px at 22% 30%, rgba(15,61,62,.10), transparent 65%),
+        radial-gradient(700px 420px at 75% 65%, rgba(31,111,139,.10), transparent 65%);
+      mix-blend-mode:multiply;
+      opacity:.75;
+      animation: drift 16s ease-in-out infinite alternate;
+      transform: translate3d(0,0,0);
+    }
+    @keyframes drift{
+      from{transform: translate(-10px,-8px) scale(1.02);}
+      to{transform: translate(12px,10px) scale(1.05);}
+    }
+    @media (prefers-reduced-motion: reduce){
+      .bgfx::after{animation:none;}
+      html{scroll-behavior:auto;}
+    }
+
+    /* ====== Layout ====== */
+    .wrap{
+      max-width:1080px;
+      margin:0 auto;
+      padding:22px 16px 60px;
+    }
+
+    /* ====== Hero ====== */
     .hero{
-      background:linear-gradient(135deg,var(--hero1),var(--hero2),var(--hero3));
+      position:relative;
+      padding:26px 22px 18px;
+      border-radius: calc(var(--radius) + 4px);
       color:#fff;
-      padding:22px 20px;
-      border-radius:14px;
-      box-shadow:0 16px 35px rgba(0,0,0,.16);
-      border:1px solid rgba(255,255,255,.10);
+      border: 1px solid rgba(255,255,255,.14);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      background:
+        radial-gradient(1200px 600px at 10% 0%, rgba(124,58,237,.30), transparent 55%),
+        radial-gradient(900px 550px at 100% 20%, rgba(56,189,248,.26), transparent 58%),
+        linear-gradient(135deg,var(--hero1),var(--hero2),var(--hero3));
     }
-    h1{margin:0;font-size:28px;line-height:1.15;}
-    .name{margin-top:8px;opacity:.92;font-size:16px;}
+    .hero::before{
+      content:"";
+      position:absolute; inset:-2px;
+      background:
+        radial-gradient(500px 220px at 30% 20%, rgba(255,255,255,.10), transparent 60%),
+        radial-gradient(560px 240px at 70% 50%, rgba(255,255,255,.08), transparent 62%);
+      opacity:.9;
+      pointer-events:none;
+      animation: shimmer 10s ease-in-out infinite alternate;
+    }
+    @keyframes shimmer{
+      from{transform:translate(-6px,-6px) scale(1.02);}
+      to{transform:translate(6px,6px) scale(1.03);}
+    }
+    @media (prefers-reduced-motion: reduce){
+      .hero::before{animation:none;}
+    }
+
+    h1{
+      margin:0;
+      font-size:30px;
+      line-height:1.15;
+      letter-spacing:.2px;
+      text-shadow: 0 6px 18px rgba(0,0,0,.18);
+    }
+    .name{
+      margin-top:10px;
+      font-size:15px;
+      opacity:.93;
+      display:flex;
+      gap:10px;
+      align-items:center;
+      flex-wrap:wrap;
+    }
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:6px 10px;
+      border-radius:999px;
+      background:rgba(255,255,255,.10);
+      border:1px solid rgba(255,255,255,.14);
+      font-size:12px;
+      color:rgba(255,255,255,.92);
+      backdrop-filter: blur(8px);
+    }
+    .chips{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-top:14px;
+    }
+    .chip{
+      background: var(--chipBg);
+      border:1px solid var(--chipBorder);
+      padding:7px 10px;
+      border-radius:999px;
+      font-size:12px;
+      color:#fff;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 10px 18px rgba(0,0,0,.10) inset;
+    }
+
+    /* ====== Sticky mini-nav ====== */
+    .nav{
+      position:sticky;
+      top:10px;
+      z-index:10;
+      margin-top:14px;
+      padding:10px;
+      border-radius: calc(var(--radius) + 2px);
+      background: rgba(255,255,255,.65);
+      border:1px solid var(--border);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 12px 30px rgba(2,6,23,.08);
+    }
+    .nav-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+    }
+    .nav a{
+      text-decoration:none;
+      color:var(--text);
+      font-size:12px;
+      padding:7px 10px;
+      border-radius:999px;
+      border:1px solid rgba(15,23,42,.10);
+      background: rgba(255,255,255,.70);
+      transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+    }
+    .nav a:hover{
+      transform: translateY(-1px);
+      box-shadow: 0 10px 18px rgba(2,6,23,.10);
+      background:#fff;
+    }
+
+    /* ====== Cards ====== */
     .card{
-      background:var(--card);
       margin-top:16px;
       padding:18px 18px;
-      border-radius:14px;
+      border-radius: var(--radius);
       border:1px solid var(--border);
+      background: var(--card);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 12px 26px rgba(2,6,23,.08);
+      transition: transform .16s ease, box-shadow .16s ease, background .16s ease;
     }
-    h2{margin:0 0 10px;font-size:18px;}
+    .card:hover{
+      transform: translateY(-2px);
+      background: rgba(255,255,255,.86);
+      box-shadow: 0 18px 45px rgba(2,6,23,.10);
+    }
+    h2{
+      margin:0 0 10px;
+      font-size:18px;
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
     h3{margin:16px 0 8px;font-size:16px;}
     p{margin:10px 0;}
     ul{margin:8px 0 0 18px;padding:0;}
     li{margin:6px 0;}
     .muted{color:var(--muted);}
-    .hr{height:1px;background:rgba(0,0,0,.08);margin:14px 0;}
-    .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;}
-    .chip{
-      background:var(--chip);
-      border:1px solid rgba(0,0,0,.06);
-      padding:6px 10px;
-      border-radius:999px;
-      font-size:12px;
-      color:#111827;
+    .hr{height:1px;background:rgba(15,23,42,.10);margin:14px 0;}
+    .section{scroll-margin-top:90px;}
+
+    /* ====== Highlight callouts ====== */
+    .callout{
+      margin-top:12px;
+      padding:12px 12px;
+      border-radius:14px;
+      border:1px solid rgba(124,58,237,.18);
+      background: linear-gradient(135deg, rgba(124,58,237,.08), rgba(56,189,248,.06));
     }
+    .callout strong{color:#312e81;}
+
+    /* ====== Code block ====== */
     .mono{
       font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;
       font-size:12px;
       background:#0b1020;
       color:#e5e7eb;
-      padding:10px;
-      border-radius:10px;
+      padding:12px;
+      border-radius:14px;
       overflow:auto;
+      box-shadow: 0 12px 24px rgba(2,6,23,.18);
+      border:1px solid rgba(255,255,255,.08);
       margin-top:10px;
     }
 
-    /* Figures (screenshots) */
+    /* ====== Figures / images ====== */
     figure.case-figure{margin:12px 0 4px;}
     img.case-img{
       width:100%;
       height:auto;
-      border-radius:12px;
-      border:1px solid rgba(0,0,0,.08);
-      box-shadow:0 10px 22px rgba(0,0,0,.08);
+      border-radius:14px;
+      border:1px solid rgba(15,23,42,.10);
+      box-shadow: var(--shadow2);
       background:#fff;
       display:block;
     }
@@ -86,26 +260,110 @@
       color:var(--muted);
       font-size:13px;
     }
+
+    /* ====== Gallery (top) ====== */
+    .gallery{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap:10px;
+      margin-top:14px;
+    }
+    .gitem{
+      grid-column: span 6;
+      padding:12px;
+      border-radius:14px;
+      border:1px solid rgba(15,23,42,.10);
+      background: rgba(255,255,255,.72);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 12px 26px rgba(2,6,23,.08);
+      transition: transform .15s ease, box-shadow .15s ease;
+    }
+    .gitem:hover{transform: translateY(-2px); box-shadow: 0 18px 35px rgba(2,6,23,.10);}
+    .gtitle{font-size:13px; margin:0 0 6px; font-weight:700;}
+    .gmeta{font-size:12px; color:var(--muted); margin:0;}
+    .gitem a{color:inherit; text-decoration:none; display:block;}
+    @media (max-width:720px){
+      .gitem{grid-column: span 12;}
+      h1{font-size:26px;}
+    }
+
+    /* Small icon badge */
+    .icon{
+      width:26px;height:26px;
+      border-radius:10px;
+      display:inline-grid;
+      place-items:center;
+      background: linear-gradient(135deg, rgba(124,58,237,.18), rgba(56,189,248,.18));
+      border:1px solid rgba(15,23,42,.10);
+      color:#0f172a;
+      flex: 0 0 auto;
+    }
   </style>
 </head>
 
 <body>
+  <div class="bgfx" aria-hidden="true"></div>
+
   <div class="wrap">
 
-    <div class="hero">
+    <header class="hero">
       <h1>Quality Data Analytics — Closed‑Loop Quality Intelligence (RMG)</h1>
-      <div class="name">Mohaimin Chowdhury</div>
+
+      <div class="name">
+        <span class="pill">Mohaimin Chowdhury</span>
+        <span class="pill">Power BI • Excel • Power Query • DAX</span>
+        <span class="pill">Factory Quality Analytics</span>
+      </div>
+
       <div class="chips">
         <span class="chip">Excel → Power BI system build</span>
-        <span class="chip">Inspection: Inline / Endline / Prefinal / Final</span>
-        <span class="chip">Folder-based database design</span>
-        <span class="chip">Buyer final report integration</span>
+        <span class="chip">Inline / Endline / Prefinal / Final</span>
+        <span class="chip">Folder-based database ingestion</span>
+        <span class="chip">Buyer final integration</span>
         <span class="chip">VoG → defect mapping</span>
       </div>
-    </div>
+    </header>
 
-    <div class="card">
-      <h2>Overview</h2>
+    <nav class="nav" aria-label="Page navigation">
+      <div class="nav-row">
+        <a href="#overview">Overview</a>
+        <a href="#built">What I Built</a>
+        <a href="#case-study">Case Study</a>
+        <a href="#data-model">Data Model</a>
+        <a href="#closing">Closing</a>
+      </div>
+    </nav>
+
+    <!-- Quick visual index -->
+    <section class="gallery" aria-label="Visual highlights">
+      <div class="gitem"><a href="#unit-wise">
+        <p class="gtitle">Unit-wise Analysis</p>
+        <p class="gmeta">Operational slicing: where to act</p>
+      </a></div>
+      <div class="gitem"><a href="#final-rca">
+        <p class="gtitle">Final + RCA Operation</p>
+        <p class="gmeta">Buyer final signal → root cause drill</p>
+      </a></div>
+      <div class="gitem"><a href="#similar-style">
+        <p class="gtitle">Similar Style</p>
+        <p class="gmeta">Predictive readiness from history</p>
+      </a></div>
+      <div class="gitem"><a href="#vog">
+        <p class="gtitle">VoG (Voice of Guest)</p>
+        <p class="gmeta">Customer voice → defect language</p>
+      </a></div>
+      <div class="gitem"><a href="#defect-correlation">
+        <p class="gtitle">Defect Correlation</p>
+        <p class="gmeta">Cross-source consistency governance</p>
+      </a></div>
+      <div class="gitem"><a href="#data-model">
+        <p class="gtitle">Data Model Map</p>
+        <p class="gmeta">Industrial-grade relational design</p>
+      </a></div>
+    </section>
+
+    <section id="overview" class="card section">
+      <h2><span class="icon">✦</span>Overview</h2>
       <p>
         When I joined the factory, I quickly realized that real manufacturing data behaves very differently from academic or consultancy datasets.
         Data existed, but it was not structured for decision-making: inconsistent formats, manual entry errors, and disconnected sources made even
@@ -117,42 +375,43 @@
         a scalable folder-based database approach, integrating buyer final inspection reports, expanding the model upstream (cutting/recutting/fabric),
         and finally closing the loop by mapping end-customer feedback (VoG) into operational defects for fast investigation and action.
       </p>
+    </section>
 
-      <div class="hr"></div>
-
-      <h2>What I built (simple explanation)</h2>
+    <section id="built" class="card section">
+      <h2><span class="icon">✓</span>What I built (simple explanation)</h2>
       <ul>
         <li><strong>A clean data foundation</strong> from inconsistent Excel/database exports—so results are trustworthy.</li>
         <li><strong>A defect-ranking Power BI model</strong> that works correctly by line, floor, buyer, product, style, PID, and date.</li>
         <li><strong>A central inspection database</strong> combining Inline + Endline + Prefinal to compare stages and find patterns.</li>
-        <li><strong>A scalable “folder database” approach</strong> so the system grows without Excel size limits.</li>
-        <li><strong>Buyer final inspection integration</strong> with Power Query + DAX so final data becomes usable and comparable.</li>
-        <li><strong>Upstream integration</strong> (cutting, recutting, fabric) using reference tables to connect otherwise disconnected data.</li>
+        <li><strong>A scalable folder-based ingestion</strong> so the system grows without Excel size limits.</li>
+        <li><strong>Buyer final integration</strong> (Power Query + DAX) so final data becomes usable and comparable.</li>
+        <li><strong>Upstream integration</strong> (cutting, recutting, fabric) via reference tables for stable keys.</li>
         <li><strong>VoG integration</strong> to translate customer feedback into defect language and connect it to factory actions.</li>
       </ul>
 
+      <div id="unit-wise" class="callout">
+        <strong>Visual proof:</strong> This is where the system becomes operational—teams slice by unit/line/floor/style/buyer/time to locate the exact action zone.
+      </div>
+
       <figure class="case-figure">
-        <img class="case-img" src="Unit wise analysis.png" alt="Unit-wise analysis screenshot" />
+        <img class="case-img" src="Unit%20wise%20analysis.png" alt="Unit-wise analysis screenshot" />
         <figcaption class="case-cap">
           Example of multi-level operational slicing (unit/line/floor/style/buyer/time). This is the practical layer where teams identify “where to act”
           instead of only seeing overall defect rate.
         </figcaption>
       </figure>
-    </div>
+    </section>
 
-    <div class="card">
-      <h2>Case Study — Detailed Actions (with interpretation)</h2>
+    <section id="case-study" class="card section">
+      <h2><span class="icon">⚙</span>Case Study — Detailed Actions (with interpretation)</h2>
       <p class="muted">
-        Below, each section explains the real problem, what I did, and why that choice mattered in a working factory environment.
+        Each section explains the real problem, what I did, and why that choice mattered inside a working factory environment.
       </p>
 
       <h3>Challenge 1 — Data sourcing and cleaning</h3>
-      <p><strong>Reality:</strong> The factory had data, but it wasn’t analysis-ready. Inputs were partly manual and partly automatic, creating typos,
-        mixed date formats, mismatched buyer names, and inconsistent IDs across large volumes of files.</p>
-      <p><strong>What I did:</strong> I standardized dates, corrected repeated ID/style errors systematically, and validated fields against official lists.
-        I cleaned the data while protecting daily operations—meaning I avoided changing the data-entry structure that operators depended on.</p>
-      <p><strong>Why it mattered:</strong> In quality analytics, bad inputs create wrong conclusions. This step wasn’t just cleaning—it was building trust
-        so defect ranking wouldn’t mislead teams or trigger wrong corrective actions.</p>
+      <p><strong>Reality:</strong> Data existed but wasn’t analysis-ready. Manual + automatic entry created typos, mixed date formats, buyer name mismatches, and inconsistent IDs across huge volumes.</p>
+      <p><strong>What I did:</strong> Standardized dates, corrected repeated errors systematically, validated fields against official lists, and kept the operator workflow unchanged (transform inside Power BI, not at source).</p>
+      <p><strong>Why it mattered:</strong> This step built trust. Wrong data leads to wrong defect ranking, wrong priorities, and wasted corrective action.</p>
 
       <div class="mono">
 Example correction logic I used in Excel (pattern-based correction + lookup):
@@ -160,167 +419,133 @@ Example correction logic I used in Excel (pattern-based correction + lookup):
       </div>
 
       <h3>Challenge 2 — Data structure in Power BI</h3>
-      <p><strong>Reality:</strong> The inspection file structure was not suitable for analytics: defect names were stored as columns, defect counts were in rows,
-        and there was no unique record key. In this shape, “top defects” cannot be calculated reliably across filters.</p>
-      <p><strong>What I did:</strong> I created a unique ID by combining an index with key fields (style, product ID, date, etc.). I duplicated the table,
-        unpivoted defect columns into a proper fact structure (Defect Name + Qty), and linked the unpivoted table back to the original using a one-to-many relationship.</p>
-      <p><strong>Why it mattered:</strong> This is the core analytics transformation: it turns the file into a model where slicers and breakdowns work correctly.
-        Now defect ranking becomes consistent across line, floor, buyer, product, and date.</p>
+      <p><strong>Reality:</strong> Defect names were columns, quantities were rows, and there was no unique record key—so “Top Defects” cannot be calculated reliably with filters.</p>
+      <p><strong>What I did:</strong> Created a unique ID (index + key fields), duplicated the table, unpivoted defect columns into rows (Defect Name + Qty), and connected back with one-to-many relationships.</p>
+      <p><strong>Why it mattered:</strong> This is the foundation of correct analytics. Without it, defect ranking breaks when slicing by buyer/line/date/product.</p>
 
       <h3>Challenge 3 — Putting inspection stages together (Inline + Endline + Prefinal)</h3>
-      <p><strong>Reality:</strong> Inline, endline, and prefinal data existed in different structures. But factory decisions need comparisons across stages
-        to understand where defects are generated and how they evolve.</p>
-      <p><strong>What I did:</strong> I aligned datasets by adding an inspection-stage identifier and standardizing the structure. Then I appended them into
-        a single central database table. I also created a central unpivoted table and built relationships that allow stage-wise and defect-wise analysis.</p>
-      <p><strong>Why it mattered:</strong> This turned a single report into a system: defects can be tracked across stages, enabling correlation and faster RCA
-        rather than treating each inspection gate as a separate silo.</p>
+      <p><strong>Reality:</strong> Stages had different formats, but quality decisions require comparisons across gates to learn where defects are generated.</p>
+      <p><strong>What I did:</strong> Standardized structures, added inspection stage identifiers, appended into a central database, and built stage-wise + defect-wise analysis through a central unpivoted table.</p>
+      <p><strong>Why it mattered:</strong> This converts isolated checkpoints into a traceable quality system for correlation and faster RCA.</p>
 
       <h3>Challenge 4 — Scaling the database (Excel limitations)</h3>
-      <p><strong>Reality:</strong> Excel can’t hold everything forever in one file. Data volume grows fast, and forcing complicated tools on entry operators breaks the process.</p>
-      <p><strong>What I did:</strong> I designed a folder-based database approach: distribute data into smaller standardized Excel files, store them in folders,
-        and connect the folder to Power BI so new files can be dropped in and automatically included. I also improved entry templates with lookups and error checks
-        so mistakes are caught at input time.</p>
-      <p><strong>Why it mattered:</strong> This is the bridge between factory reality and analytics. Operators keep a usable workflow, while Power BI gains scalable ingestion.</p>
+      <p><strong>Reality:</strong> One-file Excel databases fail at scale, but complex tools overwhelm operators.</p>
+      <p><strong>What I did:</strong> Folder-based ingestion: split into standardized files, connect Power BI to folders, and improve templates with lookups + error checks.</p>
+      <p><strong>Why it mattered:</strong> “Scale without stress”: operators keep Excel usability while Power BI behaves like scalable ingestion.</p>
 
-      <h3>Challenge 5 — Integrating buyer final inspection data (Final + RCA)</h3>
-      <p><strong>Reality:</strong> Internal final inspection data existed but lacked reliability. Buyer final reports were more trustworthy, but they came with different
-        defect naming and combined categories (measurement, workmanship, packaging).</p>
-      <p><strong>What I did:</strong> I transformed buyer reports using Power Query, built calculations with DAX, designed a final-data model, and integrated it with factory
-        inspection stages. I also handled combined-category reporting using filtering logic so final insights stayed meaningful.</p>
-      <p><strong>Why it mattered:</strong> This aligned factory analytics to buyer reality. Investigations can start from buyer findings and trace backwards to inline,
-        operation and time-based sources, supporting structured improvement methods like 5-Why and PDCA.</p>
+      <h3 id="final-rca">Challenge 5 — Integrating buyer final inspection data (Final + RCA)</h3>
+      <p><strong>Reality:</strong> Buyer final reports are more reliable but structured differently (naming + grouped categories).</p>
+      <p><strong>What I did:</strong> Transformed reports in Power Query, built DAX logic, designed a final model, integrated with factory stages, and handled combined categories through filtering logic.</p>
+      <p><strong>Why it mattered:</strong> Lets investigations start from buyer final findings and trace backward into inline/operations/time—supporting PDCA and 5-Why actions.</p>
 
       <figure class="case-figure">
-        <img class="case-img" src="Final Defect.png" alt="Final defect screenshot" />
+        <img class="case-img" src="Final%20Defect.png" alt="Final defect screenshot" />
         <figcaption class="case-cap">
           Buyer final inspection view: final defect signals are standardized into the model so they can be compared with factory inspection stages.
         </figcaption>
       </figure>
 
       <figure class="case-figure">
-        <img class="case-img" src="RCA Operation.png" alt="RCA operation screenshot" />
+        <img class="case-img" src="RCA%20Operation.png" alt="RCA operation screenshot" />
         <figcaption class="case-cap">
-          RCA trace layer: the model supports drilling down from defect outcome to operational origin so corrective actions can target the correct process/operation.
+          RCA trace layer: drill down from defect outcome to operational origin so corrective actions target the correct process/operation.
         </figcaption>
       </figure>
 
       <h3>Challenge 6 — Integrating cutting, recutting, and fabric</h3>
-      <p><strong>Reality:</strong> Cutting and recutting integration needed consistent keys (style, PID, item type). Fabric was contract-based and did not map directly to style.</p>
-      <p><strong>What I did:</strong> I created dedicated reference tables: one for style–PID–item type, and another for fabric using contract numbers.
-        Then I connected those into the model so data becomes traceable across stages.</p>
-      <p><strong>Why it mattered:</strong> This created end-to-end visibility. Quality problems can be analyzed across upstream and downstream steps, not limited to one inspection gate.</p>
+      <p><strong>Reality:</strong> Cutting/recutting needs consistent keys; fabric is contract-based and not naturally keyed by style.</p>
+      <p><strong>What I did:</strong> Built reference tables (style–PID–item type + fabric contract mapping) and connected stages into one traceable system.</p>
+      <p><strong>Why it mattered:</strong> End-to-end visibility: inspect and act across upstream and downstream instead of blaming only one gate.</p>
 
-      <h3>Challenge 7 — Product image and similar-style logic</h3>
-      <p><strong>Reality:</strong> The team wanted predictive context using images and historical similarity. Pulling images directly into Power BI created performance issues,
-        and internal access to image references was not always reliable.</p>
-      <p><strong>What I did:</strong> I built an image library with references stored in the database and created an “upcoming style vs similar style” mapping so selecting an upcoming style
-        shows similar-style historical performance and context.</p>
-      <p><strong>Why it mattered:</strong> This improves readiness: teams can anticipate likely defect risks for new styles using proven historical signals.</p>
+      <h3 id="similar-style">Challenge 7 — Product image and similar-style logic</h3>
+      <p><strong>Reality:</strong> Images + historical similarity support prediction but can slow reports and have access issues.</p>
+      <p><strong>What I did:</strong> Built image library references and created upcoming-style vs similar-style mapping so upcoming styles inherit context from similar history.</p>
+      <p><strong>Why it mattered:</strong> Predictive readiness: helps teams prevent likely defects before ramp-up.</p>
 
       <figure class="case-figure">
-        <img class="case-img" src="Similar Style.png" alt="Similar style screenshot" />
+        <img class="case-img" src="Similar%20Style.png" alt="Similar style screenshot" />
         <figcaption class="case-cap">
           Similar-style mapping: connects upcoming styles with historically similar products so teams can use past defect behavior to reduce risk before production ramps up.
         </figcaption>
       </figure>
 
-      <h3>Challenge 8 — Integrating Voice of Guest (VoG) into defect language</h3>
-      <p><strong>Reality:</strong> Stakeholders wanted to translate customer reviews into defects. Manual interpretation is not scalable.</p>
-      <p><strong>What I did:</strong> I implemented an AI-assisted interpretation workflow to convert comments into defect type/category/name and integrated those results into Power BI.</p>
-      <p><strong>How I kept it consistent:</strong> I designed strict classification rules so every row receives a sentiment and each negative review gets one dominant issue.
-        Sentiment rules prioritize star rating and fit issues first; issue classification prioritizes price/value complaints first, then matches the complaint to an approved defect list whenever possible,
-        and only creates a new issue when no approved match exists.</p>
-      <p><strong>Why it mattered:</strong> This created a closed loop: customer complaints can be traced into factory stages (fabric → cutting → sewing → inspection → delivery),
-        enabling faster root-cause investigation and corrective action based on real customer signals.</p>
+      <h3 id="vog">Challenge 8 — Integrating Voice of Guest (VoG) into defect language</h3>
+      <p><strong>Reality:</strong> Stakeholders wanted customer review analysis to identify defects, but manual mapping is impossible at scale.</p>
+      <p><strong>What I did:</strong> Used an AI-assisted workflow to convert feedback into structured defect type/category/name and integrated it into the same Power BI ecosystem.</p>
+      <p><strong>Why it mattered:</strong> Closed loop: customer complaint → defect language → factory investigation path (fabric → cutting → sewing → inspection → delivery).</p>
 
       <figure class="case-figure">
         <img class="case-img" src="VoG.png" alt="Voice of Guest screenshot" />
         <figcaption class="case-cap">
-          VoG analytics view: customer feedback is translated into structured issues and connected to operational defect taxonomy for actionable factory-side investigation.
+          VoG view: customer feedback translated into structured issues and connected to operational defect taxonomy for actionable factory-side investigation.
         </figcaption>
       </figure>
 
-      <h3>Additional integration — Cross-check consistency (C&amp;C)</h3>
+      <h3 id="defect-correlation">Additional integration — Cross-check consistency (C&amp;C)</h3>
       <p>
-        I integrated C&amp;C data to correlate inspection outcomes across different roles and external sources, so we can confirm procedure consistency and comparable results.
-        This adds governance to the quality system, reducing disagreements caused by definition gaps or inconsistent inspection judgment.
+        Correlating results across managers, officers, inspectors, and buyer findings adds governance—confirming everyone is aligned on procedure and interpretation.
       </p>
 
       <figure class="case-figure">
-        <img class="case-img" src="Defect Correlation.png" alt="Defect correlation screenshot" />
+        <img class="case-img" src="Defect%20Correlation.png" alt="Defect correlation screenshot" />
         <figcaption class="case-cap">
           Defect correlation / consistency layer: compares patterns across sources and roles to validate that inspection procedures and results are aligned.
         </figcaption>
       </figure>
-    </div>
 
-    <div class="card">
-      <h2>Power BI Data Model — Architecture, Complexity, and Industrial Use</h2>
+    </section>
+
+    <section id="data-model" class="card section">
+      <h2><span class="icon">⧉</span>Power BI Data Model — Architecture, Complexity, and Industrial Use</h2>
 
       <figure class="case-figure">
-        <img class="case-img" src="model.png.png" alt="Power BI data model diagram" />
+        <img class="case-img" src="model.png" alt="Power BI data model diagram" />
         <figcaption class="case-cap">
-          Power BI data model diagram: relationship-based architecture connecting inspection stages, reference tables, buyer final integration,
-          and customer feedback mapping for end-to-end quality analytics.
+          Data model map: relationship-based architecture connecting inspection stages, reference tables, buyer final integration, and VoG mapping.
         </figcaption>
       </figure>
 
       <p>
         The Power BI model behind this case study is intentionally industrial-grade. It is not a single flat table.
-        It is a connected system designed to support reliable analysis across multiple inspection stages, multiple sources,
-        and multiple decision levels (operator → line → floor → factory → buyer).
+        It is a connected system designed to support reliable analysis across multiple inspection stages and decision levels.
       </p>
 
       <div class="hr"></div>
 
-      <h3>1) Core architecture (how the model is built)</h3>
+      <h3>1) Core architecture</h3>
       <p>
-        At the center of the model is a <strong>central inspection database</strong> that holds common inspection context (style/PID, buyer, date, line/floor, MO and other identifiers).
-        This “central table” is what everything else connects to, so filters behave consistently across the entire report.
+        A central inspection table stores shared context (style/PID, buyer, date, line/floor, MO, etc.). A separate unpivoted defect-fact table
+        stores defect name + quantity and connects via unique record IDs. This is what keeps filtering and ranking correct.
       </p>
 
+      <h3>2) Why it looks complex</h3>
       <p>
-        Defect analysis is enabled through a <strong>separate defect fact structure</strong>. This is created by duplicating the inspection table and
-        <strong>unpivoting defect columns into rows</strong>, producing a clean “Defect Name + Qty” table. That table links to the central inspection table
-        using a <strong>unique record ID</strong> in a one-to-many relationship, so one inspection record can produce many defect rows.
+        The model reflects factory reality—multiple sources, multiple keys, and multiple stages. Each table exists because one real operational question
+        needs governance: consistent keys, consistent definitions, and controlled relationships.
       </p>
 
-      <p class="muted">
-        Interpretation: This is the difference between “pretty visuals” and correct analytics. Without the unique-ID + unpivot defect-fact pattern,
-        defect ranking becomes unreliable when slicing by buyer, line, date, or product.
-      </p>
-
-      <div class="hr"></div>
-
-      <h3>2) Why the model looks complex (and why the complexity is necessary)</h3>
-      <p>
-        The model is complex because it mirrors factory reality. It is not solving one report—it is solving a system problem:
-        multiple stages, multiple sources, multiple keys, and multiple decision levels need to work together without breaking.
-      </p>
-
-      <h3>3) Industrial use (what it enables)</h3>
+      <h3>3) Industrial use</h3>
       <ul>
-        <li><strong>Correct defect ranking</strong> at any level with stable slicing (line/floor/buyer/style/date).</li>
-        <li><strong>Cross-stage traceability</strong> to see where defects originate and where they are caught.</li>
-        <li><strong>Faster RCA</strong> by drilling from outcomes to operational origin and time context.</li>
-        <li><strong>Standardized decision language</strong> by translating VoG into consistent defect categories/issues.</li>
-        <li><strong>Predictive readiness</strong> via similar-style mapping and historical performance context.</li>
-        <li><strong>Governance & consistency</strong> via cross-role/source correlation checks.</li>
+        <li><strong>Correct defect ranking</strong> at any level (line/floor/buyer/style/date).</li>
+        <li><strong>Cross-stage traceability</strong> from inline to final and back to origin.</li>
+        <li><strong>RCA support</strong> through drill-down paths to operations/time context.</li>
+        <li><strong>Closed-loop improvement</strong> by connecting VoG into defect taxonomy.</li>
+        <li><strong>Governance</strong> through correlation/consistency checks.</li>
       </ul>
 
       <p class="muted">
-        In short: the model is complex because the factory is complex—and the analytics is designed to match reality without breaking operations.
-      </p>
-    </div>
+        The report contains pages such as “Unit Wise Analysis”, “RCA - Operation”, “Defect Correlation”, “Vo G”, and “Similar Style Analysis” which match the system design and visuals shown above.
+      </p> [1](https://app.powerbi.com/groups/667e157b-c876-4c65-ba3c-8a257713d59b/reports/76ed721f-3f2a-4eb2-9e76-9ef45d2ef412?pbi_source=Substrate)
+    </section>
 
-    <div class="card">
-      <h2>Closing Reflection</h2>
+    <section id="closing" class="card section">
+      <h2><span class="icon">✧</span>Closing Reflection</h2>
       <p>
         This started as a request for “top defects,” but the real work was building an operationally sustainable system: standardizing reality-based data,
         restructuring it into a reliable model, scaling ingestion, integrating buyer final results, connecting upstream processes, and closing the loop with VoG.
         The outcome is a single analytics environment designed to support faster, clearer, and more consistent quality decision-making.
       </p>
-    </div>
+    </section>
 
   </div>
 </body>
