@@ -21,10 +21,6 @@
       --hero2:#0f3d3e;
       --hero3:#1f6f8b;
 
-      --accent:#7c3aed;
-      --accent2:#22c55e;
-      --accent3:#38bdf8;
-
       --chipBg:rgba(255,255,255,.14);
       --chipBorder:rgba(255,255,255,.16);
 
@@ -82,7 +78,10 @@
       html{scroll-behavior:auto;}
     }
     @media (max-width:700px){
-      .bgfx::after{ animation:none; opacity:.45; }
+      .bgfx::after{
+        animation:none;
+        opacity:.45;
+      }
     }
 
     /* ====== Layout ====== */
@@ -322,6 +321,27 @@
       color:#0f172a;
       flex: 0 0 auto;
     }
+
+    /* ====== Footer (Contact) ====== */
+    footer{
+      margin-top:16px;
+      padding:18px;
+      border-radius: var(--radius);
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.70);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 12px 26px rgba(2,6,23,.08);
+    }
+    footer p{margin:6px 0;}
+    footer a{
+      color: var(--text);
+      text-decoration:none;
+      border-bottom:1px solid rgba(15,23,42,.18);
+    }
+    footer a:hover{
+      border-bottom-color: rgba(15,23,42,.45);
+    }
+    .footer-muted{color:var(--muted); font-size:13px;}
   </style>
 </head>
 
@@ -363,8 +383,8 @@
         <a href="#vog">VoG Integration</a>
         <a href="#cc">C&amp;C Correlation</a>
         <span class="sep"></span>
-        <a href="#acknowledgement">Acknowledgement</a>
         <a href="#data-model">Data Model</a>
+        <a href="#acknowledgement">Acknowledgement</a>
         <a href="#closing">Closing</a>
       </div>
     </nav>
@@ -548,23 +568,6 @@ Example correction logic I used in Excel (pattern-based correction + lookup):
       </figure>
     </section>
 
-    <!-- ✅ NEW: Acknowledgement section -->
-    <section id="acknowledgement" class="card section">
-      <h2><span class="icon">🙏</span>Acknowledgement</h2>
-      <p>
-        I am confident with data analytics and the tools. However, meeting real-world manufacturing requirements and making analytics truly usable
-        is not the same as simply knowing Power BI, DAX, or data modeling.
-      </p>
-      <p>
-        I would like to acknowledge [Raju Ahmed](https://www.office.com/search?q=Raju+Ahmed&EntityRepresentationId=1cc30f37-c3f4-4f35-a14e-b424c2e41e33), my manager, for translating business and stakeholder needs into clear analytical direction. [1](https://www.office.com/search?q=Mohaimin+Chowdhury)[2](https://www.office.com/search?q=Raju+Ahmed)
-        He consistently helped interpret requirements, reviewed dashboard progress, and guided me on what outcomes matter most to stakeholders—turning “requests”
-        into practical operational goals.
-      </p>
-      <p class="muted">
-        This project reflects both technical execution and operational alignment—made possible through his continuous guidance and clarity on operational excellence priorities.
-      </p>
-    </section>
-
     <section id="data-model" class="card section">
       <h2><span class="icon">⧉</span>Power BI Data Model — Architecture, Complexity, and Industrial Use</h2>
 
@@ -604,6 +607,27 @@ Example correction logic I used in Excel (pattern-based correction + lookup):
       </ul>
     </section>
 
+    <!-- ✅ Acknowledgement (just before Closing Reflection) -->
+    <section id="acknowledgement" class="card section">
+      <h2><span class="icon">🙏</span>Acknowledgement</h2>
+
+      <p>
+        I am confident with data analytics and the tools. However, meeting real-world manufacturing requirements
+        and making analytics truly usable is not the same as simply knowing Power BI, DAX, or data modeling.
+      </p>
+
+      <p>
+        I would like to acknowledge Raju Ahmed, my manager and the Continuous Improvement Lead, for translating business and
+        stakeholder needs into clear analytical direction. He consistently helped interpret requirements, reviewed dashboard
+        progress, and guided me on what outcomes matter most to stakeholders—turning “requests” into practical operational goals.
+      </p>
+
+      <p class="muted">
+        This project reflects both technical execution and operational alignment—made possible through his continuous guidance
+        and clarity on operational excellence priorities.
+      </p>
+    </section>
+
     <section id="closing" class="card section">
       <h2><span class="icon">✧</span>Closing Reflection</h2>
       <p>
@@ -613,6 +637,14 @@ Example correction logic I used in Excel (pattern-based correction + lookup):
         clearer, and more consistent quality decision-making.
       </p>
     </section>
+
+    <!-- ✅ Contact at the end -->
+    <footer id="contact">
+      <p><strong>Contact</strong></p>
+      <p>Email: <a href="mailto:mchowdhury7426@gmail.com">mchowdhury7426@gmail.com</a></p>
+      <p>LinkedIn: <a href="https://www.linkedin.com/in/mohaimin-chowdhury-48a685223/" target="_blank" rel="noopener noreferrer">Mohaimin Chowdhury</a></p>
+      <p class="footer-muted">© 2026 Mohaimin Chowdhury</p>
+    </footer>
 
   </div>
 </body>
