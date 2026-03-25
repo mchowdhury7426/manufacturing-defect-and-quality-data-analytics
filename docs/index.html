@@ -51,8 +51,8 @@
     .bgfx{
       position:fixed;
       inset:0;
-      z-index:0;            /* was -2 */
-      pointer-events:none;  /* important */
+      z-index:0;
+      pointer-events:none;
       background:
         radial-gradient(900px 500px at 12% 12%, rgba(124,58,237,.18), transparent 60%),
         radial-gradient(800px 520px at 88% 18%, rgba(56,189,248,.16), transparent 60%),
@@ -64,7 +64,7 @@
       content:"";
       position:absolute;
       inset:-60px;
-      pointer-events:none; /* important */
+      pointer-events:none;
       background:
         radial-gradient(700px 400px at 22% 30%, rgba(15,61,62,.10), transparent 65%),
         radial-gradient(700px 420px at 75% 65%, rgba(31,111,139,.10), transparent 65%);
@@ -81,13 +81,8 @@
       .bgfx::after{animation:none;}
       html{scroll-behavior:auto;}
     }
-
-    /* Extra mobile safeguard: reduce animation load */
     @media (max-width:700px){
-      .bgfx::after{
-        animation:none;
-        opacity:.45;
-      }
+      .bgfx::after{ animation:none; opacity:.45; }
     }
 
     /* ====== Layout ====== */
@@ -96,7 +91,7 @@
       margin:0 auto;
       padding:22px 16px 60px;
       position:relative;
-      z-index:1; /* ensures content is above bgfx */
+      z-index:1;
     }
 
     /* ====== Hero ====== */
@@ -185,7 +180,7 @@
     /* ====== Sticky navigation ====== */
     .nav{
       position:sticky;
-      top:0px; /* was 10px; more stable on mobile */
+      top:0px;
       z-index:10;
       margin-top:14px;
       padding:10px;
@@ -282,9 +277,7 @@
     }
     .callout strong{color:#312e81;}
 
-    /* ====== Code block ======
-       iOS scroll fix: prevent vertical trapping; allow horizontal only
-    */
+    /* ====== Code block (iOS scroll fix) ====== */
     .mono{
       font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;
       font-size:12px;
@@ -293,9 +286,9 @@
       padding:12px;
       border-radius:14px;
       overflow-x:auto;
-      overflow-y:hidden;                 /* key */
-      -webkit-overflow-scrolling: touch; /* iOS momentum */
-      touch-action: pan-x;              /* prevent vertical trapping */
+      overflow-y:hidden;
+      -webkit-overflow-scrolling: touch;
+      touch-action: pan-x;
       box-shadow: 0 12px 24px rgba(2,6,23,.18);
       border:1px solid rgba(255,255,255,.08);
       margin-top:10px;
@@ -370,6 +363,7 @@
         <a href="#vog">VoG Integration</a>
         <a href="#cc">C&amp;C Correlation</a>
         <span class="sep"></span>
+        <a href="#acknowledgement">Acknowledgement</a>
         <a href="#data-model">Data Model</a>
         <a href="#closing">Closing</a>
       </div>
@@ -552,7 +546,23 @@ Example correction logic I used in Excel (pattern-based correction + lookup):
           Defect correlation / consistency layer: compares patterns across sources and roles to validate that inspection procedures and results are aligned.
         </figcaption>
       </figure>
+    </section>
 
+    <!-- ✅ NEW: Acknowledgement section -->
+    <section id="acknowledgement" class="card section">
+      <h2><span class="icon">🙏</span>Acknowledgement</h2>
+      <p>
+        I am confident with data analytics and the tools. However, meeting real-world manufacturing requirements and making analytics truly usable
+        is not the same as simply knowing Power BI, DAX, or data modeling.
+      </p>
+      <p>
+        I would like to acknowledge [Raju Ahmed](https://www.office.com/search?q=Raju+Ahmed&EntityRepresentationId=1cc30f37-c3f4-4f35-a14e-b424c2e41e33), my manager, for translating business and stakeholder needs into clear analytical direction. [1](https://www.office.com/search?q=Mohaimin+Chowdhury)[2](https://www.office.com/search?q=Raju+Ahmed)
+        He consistently helped interpret requirements, reviewed dashboard progress, and guided me on what outcomes matter most to stakeholders—turning “requests”
+        into practical operational goals.
+      </p>
+      <p class="muted">
+        This project reflects both technical execution and operational alignment—made possible through his continuous guidance and clarity on operational excellence priorities.
+      </p>
     </section>
 
     <section id="data-model" class="card section">
@@ -607,4 +617,3 @@ Example correction logic I used in Excel (pattern-based correction + lookup):
   </div>
 </body>
 </html>
-``
